@@ -2,7 +2,7 @@ window.onload = function() {
   var buttons = document.getElementsByTagName('span'),
     answer = document.querySelectorAll('.answer p')[0],
     clear = document.getElementsByClassName('clear')[0],
-    mem = "no";
+    mem = "no"; //used for chaining
 
   for (var i = 0; i < buttons.length; i++) {
     if (buttons[i].innerHTML === '=') {
@@ -40,7 +40,7 @@ window.onload = function() {
       }
     };
   }
-
+//allows input by keyboard
   $(document).keypress(function(event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode === 49) {
@@ -143,6 +143,7 @@ window.onload = function() {
     return function() {
       mem = "yes"
       var y = eval(answer.innerHTML);
+      // returns "ERROR" on divide by zero instead of "Infinity"
       if (isFinite(y)) {
         answer.innerHTML = y;
       } else {
